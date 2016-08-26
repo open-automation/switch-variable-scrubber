@@ -3,11 +3,15 @@ Easily sanitize private data values.
 
 <img src="https://i.imgur.com/amdb9eR.png" width="500">
 
-This is useful when archiving/injecting files or directories, where your source variable may contain characters not well supported by the filesystem. For example, in the flow above, if I was archiving files in my archive with the pattern "*{job_number}_{customer_name}*" and the customer name in my database was "*J.P. & Son's Barbershop*", it would result in  "*/Live Jobs/123456_J.P. & Son's Barbershop/*". 
+This is useful when archiving/injecting files or directories, where your source variable may contain characters not well supported by the filesystem. For example, in the flow above, if I was archiving files in my archive with the pattern "*{job_number}_{customer_name}*" and the customer name in my database was "*J.P. & Son's Barbershop*", it would result in the following path:
+
+    /Live Jobs/123456_J.P. & Son's Barbershop/ 
 
 Strange things can happen when including special characters within directory names. For example, periods are allowed in most filesystems for directory names, but if you attempt to end a directory name with a period, Switch will replace the period with a bullet character when archiving.
 
-By scrubbing, we can normalize the *{customer_name}* variable before archiving, resulting in the following path: "*/Live Jobs/123456_JP Sons Barbershop/*"
+By scrubbing, we can normalize the *{customer_name}* variable before archiving, resulting in the following path: 
+
+    /Live Jobs/123456_JP Sons Barbershop/
 
 ## Flow element properties
 
